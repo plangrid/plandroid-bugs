@@ -1,0 +1,8 @@
+An intern comes to you with this branch.
+They tell you that they're trying to add a dialog that lets you change the roles of users. They say
+"This should work! It actually does sort of work if you cold-restart the app... I don't know what to do, can you help?"
+
+Gently pick through their code and figure out 1. what's wrong and 2. any other improvements.
+
+Cheers!
+

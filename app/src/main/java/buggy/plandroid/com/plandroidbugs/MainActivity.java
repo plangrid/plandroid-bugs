@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         RecyclerView recyclerView = findViewById(R.id.recycler);
         UserAdapter userAdapter = new UserAdapter();
         recyclerView.setAdapter(userAdapter);
@@ -27,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         UserDao userDao = PlanDroidApp.getApp(getApplicationContext()).getDatabase().userDao();
 
+        // Listens to changes to the User database table.
         userDao.getAll().observeOn(AndroidSchedulers.mainThread()).subscribe(it -> userAdapter.setUsers(it));
     }
 }
