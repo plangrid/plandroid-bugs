@@ -22,6 +22,9 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Collection<UserEntity> userEntitys);
 
+    @Update
+    void update(UserEntity... userEntity);
+
     @Delete
     void delete(UserEntity userEntity);
 }

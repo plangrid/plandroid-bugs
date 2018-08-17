@@ -21,6 +21,8 @@ class PlanDroidApp : Application() {
     val database: PGDatabase by lazy {
         Room.databaseBuilder(this,
                 PGDatabase::class.java, "database-name")
+                .allowMainThreadQueries()
+                .addMigrations(Migration1To2())
                 .build()
     }
 
