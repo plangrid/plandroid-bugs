@@ -2,29 +2,24 @@ package buggy.plandroid.com.plandroidbugs;
 
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.kotlin.KotlinModule;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import java.util.HashMap;
 
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import retrofit2.Call;
-import retrofit2.Callback;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class PGApi {
@@ -57,6 +52,18 @@ public class PGApi {
         return apiService.getAllUsers().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
+    public void changeUserRole(String userUid, String roleUid) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("role_uid", roleUid);
+        try {
+            apiService.changeUserRole(userUid, map).subscribeOn(Schedulers.computation())
+                      .doOnError(
+                              e -> Log.d("PGApi", "Failed to change roles", e))
+                      .subscribe();
+        } catch (Exception e) {
+            Log.e("PGApi", e.getMessage(), e);
+        }
+    }
 
     public static String basicAuth(String toEncode) {
         return String.format("Basic %s", new String(Base64.encode(toEncode.getBytes(), Base64.DEFAULT))).trim();

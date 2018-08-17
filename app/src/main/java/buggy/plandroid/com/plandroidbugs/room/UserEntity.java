@@ -20,4 +20,5 @@ public class UserEntity {
     @ColumnInfo(name = "company") public String company;
     @ColumnInfo(name = "title") public String title;
     @ColumnInfo(name = "language") public String language;
+    @ColumnInfo(name = "role_uid") public String roleUid;
 }

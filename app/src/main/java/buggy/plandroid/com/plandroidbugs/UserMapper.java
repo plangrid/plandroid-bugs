@@ -16,6 +16,7 @@ public class UserMapper {
             entity.lastName = userWire.lastName;
             entity.language = userWire.language;
             entity.userId = userWire.userId;
+            entity.roleUid = userWire.role != null ? userWire.role.uid : UserAdapter.ADMIN_ROLE;
 
             userEntities.add(entity);
         }

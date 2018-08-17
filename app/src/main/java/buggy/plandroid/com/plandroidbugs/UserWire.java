@@ -15,4 +15,5 @@ public class UserWire {
     @JsonProperty(value = "company") public String company;
     @JsonProperty(value = "title") private String title;
     @JsonProperty(value = "language") public String language;
+    @JsonProperty(value = "role") public Role role;
 }

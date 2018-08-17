@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 @Database(
-        version = 1, // Last changed by Dr. Boom
+        version = 2, // Last changed by Aggretsuko
         entities = {
                 UserEntity.class,
         }
