@@ -36,7 +36,7 @@ class PlanDroidApp : Application() {
                         convert(userList.userWires
                                 .filter { it.email != "ghalib+1237123612632@plangrid.com" && it.email != "amy.tang@plangrid.com" })) },
                 // This filter is to prevent interviewees from clicking on themselves and me.
-                { e -> Log.d("MainActivity", e.message) })
+                { e -> Log.d("MainActivity", e.message ?: "") })
     }
 }
 
