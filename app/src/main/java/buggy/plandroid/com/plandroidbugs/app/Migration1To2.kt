@@ -1,7 +1,8 @@
 package buggy.plandroid.com.plandroidbugs.app
 
-import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.migration.Migration
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+
 
 class Migration1To2 : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
