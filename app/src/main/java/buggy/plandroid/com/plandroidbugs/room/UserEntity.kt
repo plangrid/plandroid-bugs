@@ -27,7 +27,4 @@ data class UserEntity(
 
     @ColumnInfo(name = "language")
     val language: String,
-
-    @ColumnInfo(name = "role_uid")
-    val roleUid: String,
 )

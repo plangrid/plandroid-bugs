@@ -13,7 +13,6 @@ object UserMapper {
                 company = it.company,
                 title = it.title,
                 language = it.language,
-                roleUid = it.role?.uid ?: UserAdapter.ADMIN_ROLE
             )
         }
     }

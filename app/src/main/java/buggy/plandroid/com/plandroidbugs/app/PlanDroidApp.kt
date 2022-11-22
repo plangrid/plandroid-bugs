@@ -1,5 +1,6 @@
 package buggy.plandroid.com.plandroidbugs.app
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.util.Log
@@ -21,8 +22,6 @@ class PlanDroidApp : Application() {
     val database: PGDatabase by lazy {
         Room.databaseBuilder(this,
                 PGDatabase::class.java, "database-name")
-                .allowMainThreadQueries()
-                .addMigrations(Migration1To2())
                 .build()
     }
 
@@ -32,6 +31,7 @@ class PlanDroidApp : Application() {
         syncUsersFromServer()
     }
 
+    @SuppressLint("CheckResult")
     private fun syncUsersFromServer() {
         PGApi().projectUsersObservable.observeOn(Schedulers.io()).subscribe(
                 { userList -> database.userDao().insertAll(
