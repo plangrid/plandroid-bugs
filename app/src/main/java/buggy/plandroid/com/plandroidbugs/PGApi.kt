@@ -44,6 +44,17 @@ class PGApi {
         apiService.getAllUsers().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
+    fun changeUserRole(userUid: String, roleUid: String) {
+        val map = mapOf("role_uid" to roleUid)
+        try {
+            apiService.changeUserRole(userUid, map).subscribeOn(Schedulers.computation())
+                .doOnError { e: Throwable? -> Log.d("PGApi", "Failed to change roles", e) }
+                .subscribe()
+        } catch (e: Exception) {
+            Log.e("PGApi", e.message, e)
+        }
+    }
+
     companion object {
         const val BASE_URL = "https://plangrid-c-api-dispatcher-test.planfront.net"
         private const val AUTH_KEY = "521dd37f15b497e01fd7aeacab0892ec"
