@@ -25,4 +25,7 @@ data class UserWire(
 
     @JsonProperty(value = "language")
     val language: String,
+
+    @JsonProperty(value = "role")
+    val role: Role?,
 )
